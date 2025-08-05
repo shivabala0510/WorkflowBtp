@@ -1,0 +1,166 @@
+<mvc:View controllerName="mtaworkflow.controller.Detail"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:op="sap.uxap"
+	xmlns:core="sap.ui.core" >
+	<Page  title="Work flow Create">
+		<op:ObjectPageLayout 
+		enableLazyLoading="true"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false">
+         
+			<op:headerTitle>
+				<op:ObjectPageDynamicHeaderTitle>
+					<op:expandedHeading>
+					<Title text="{WorkFlowDetails>/WORKFLOW_ID}" />	
+					</op:expandedHeading>
+					<op:actions>
+						<Button text="Save"  visible="{InputModel>/SaveButton}" type="Emphasized"  press="onSavePress" />
+						<Button type="Accept"  visible="{InputModel>/UpdateButton}" text="Update" press="onUpdatePress" />
+					</op:actions>
+				</op:ObjectPageDynamicHeaderTitle>
+			</op:headerTitle>
+			<op:headerContent></op:headerContent>
+			<op:sections>
+				<op:ObjectPageSection titleUppercase="false"  title="Headers">
+					<op:subSections>
+						<op:ObjectPageSubSection  >
+							<op:blocks>
+								<VBox>
+									<Label text="Workflow ID" required="true" design="Bold" />
+									<Input editable="false" value="{WorkFlowDetails>/WORKFLOW_ID}" width="50%" />
+								</VBox>
+							</op:blocks>
+						</op:ObjectPageSubSection>
+					</op:subSections>
+				</op:ObjectPageSection>
+				<op:ObjectPageSection titleUppercase="false"  title="Properties">
+					<op:subSections>
+						<op:ObjectPageSubSection  >
+							<op:blocks>
+								<VBox>
+									<VBox>
+										<Label text="Description" required="true" design="Bold" />
+										<TextArea value="{WorkFlowDetails>/DESCRIPTION}"  width="50%" />
+									</VBox>
+									<VBox class="sapUiSmallMarginTop">
+										<Label text="Valid From" design="Bold" required="true"  />
+										<DatePicker dateValue="{WorkFlowDetails>/VALID_FROM_DATE}" width="50%" ></DatePicker>
+										<Label  class="sapUiSmallMarginTop" text="Valid To" design="Bold" required="true" />
+										<DatePicker dateValue="{WorkFlowDetails>/VALID_TO_DATE}" width="50%" ></DatePicker>
+									</VBox>
+								</VBox>
+							</op:blocks>
+						</op:ObjectPageSubSection>
+					</op:subSections>
+				</op:ObjectPageSection>
+				<op:ObjectPageSection titleUppercase="false"  title="Start Conditions">
+					<op:subSections>
+						<op:ObjectPageSubSection  >
+							<op:blocks>
+								<Table items="{WorkFlowDetails>/PrWorkFlowCond/results}"
+	>
+									<infoToolbar>
+										<OverflowToolbar>
+											<Label text="Only start the workflow if all of the following preconditions are met "/>
+										</OverflowToolbar>
+									</infoToolbar>
+									<columns>
+										<Column
+				                            hAlign="End"></Column>
+										<Column
+				                            hAlign="End"></Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<ComboBox width="100%" selectedKey="{WorkFlowDetails>COND_KEY}"
+						                                change="onPopinLayoutChanged" >
+													<items>
+														<core:Item  text="None"
+								                            key=""/>
+														<core:Item  text="Company Code is"
+								                            key="BUKRS"/>
+														<core:Item  text="Document Type of Purchase Requisition is equal to "
+								                            key="BSART"/>
+														<core:Item  text="Creation Indicator is"
+								                            key="ACTIVE"/>
+														<core:Item  text="Total Net amount is equal to or greater than"
+								                            key="PRICE"/>
+													</items>
+												</ComboBox>
+												<HBox>
+													<Input value="{WorkFlowDetails>VALUE}" showValueHelp="true" />
+													<Button class="sapUiTinyMarginBegin"  press="onDeletePress" icon="sap-icon://sys-cancel"  />
+													<Button  class="sapUiTinyMarginBegin" press="onAddPress" icon="sap-icon://add"  />
+												</HBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</op:blocks>
+						</op:ObjectPageSubSection>
+					</op:subSections>
+				</op:ObjectPageSection>
+				<op:ObjectPageSection titleUppercase="false"  title="Steps">
+					<op:subSections>
+						<op:ObjectPageSubSection  >
+							<op:blocks>
+								<Table 
+		items="{WorkFlowDetails>/PrWorkFlowStep/results}">
+        	<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Steps({= ${WorkFlowDetails>/PrWorkFlowStep/results}.length })" level="H2"/>
+					<ToolbarSpacer />
+					<Button text="Create"  press="onStepCreatePress" />
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		
+									<columns>
+										<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+											<Text text="Name" />
+										</Column>
+										<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="End">
+											<Text text="Type" />
+										</Column>
+										<Column
+				minScreenWidth="Desktop"
+				demandPopin="true"
+				hAlign="Center">
+											<Text text="Receipients" />
+										</Column>
+										
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle" type="Navigation"  press="onStepPress">
+											<cells>
+												<ObjectIdentifier
+						title="{WorkFlowDetails>STEP_NO}" text="{WorkFlowDetails>STEP_NAME}"
+						/>
+												<Text
+						text="{WorkFlowDetails>STEP_TYPE}" />
+												<Text
+						text="{WorkFlowDetails>WF_RECEPIENT}" />
+												
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</op:blocks>
+						</op:ObjectPageSubSection>
+					</op:subSections>
+				</op:ObjectPageSection>
+			</op:sections>
+		</op:ObjectPageLayout>
+      
+       
+       
+	</Page>
+</mvc:View>

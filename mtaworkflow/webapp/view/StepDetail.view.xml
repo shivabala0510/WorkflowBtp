@@ -1,0 +1,86 @@
+<mvc:View controllerName="mtaworkflow.controller.StepDetail"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:op="sap.uxap"
+	xmlns:core="sap.ui.core" >
+	<Page  title="WorkFlow Steps Create">
+		<op:ObjectPageLayout 
+		enableLazyLoading="true"
+		showTitleInHeaderContent="true"
+		upperCaseAnchorBar="false">
+         
+			<op:headerTitle>
+				<op:ObjectPageDynamicHeaderTitle>
+					<op:expandedHeading>
+				<Title text="{WorkFlowStepDetails>/STEP_NO}"  ></Title>
+					</op:expandedHeading>
+					<op:actions>
+						<Button text="Save"  visible="{InputModel>/SaveStepButton}"  type="Emphasized"  press="onStepsSavePress" />
+						<Button type="Accept" visible="{InputModel>/UpdateStepButton}" text="Update" press="onStepsUpdatePress"/>
+					</op:actions>
+				</op:ObjectPageDynamicHeaderTitle>
+			</op:headerTitle>
+			<op:headerContent></op:headerContent>
+			<op:sections>
+				<op:ObjectPageSection titleUppercase="false"  title="Headers">
+					<op:subSections>
+						<op:ObjectPageSubSection  >
+							<op:blocks>
+								<VBox>
+									<Label text="Step Name" required="true" design="Bold" />
+									<Input value="{WorkFlowStepDetails>/STEP_NAME}" width="50%" />
+                                    <Label text="Step Type" required="true" design="Bold" />
+									<ComboBox  selectedKey="{WorkFlowStepDetails>/STEP_TYPE}" width="50%" 
+						                                >
+													<items>
+														<core:Item  text="None"
+								                            key="2"/>
+														<core:Item  text="Release of PR"
+								                            key="1"/>
+													</items>
+												</ComboBox>
+								</VBox>
+							</op:blocks>
+						</op:ObjectPageSubSection>
+					</op:subSections>
+				</op:ObjectPageSection>
+				<op:ObjectPageSection titleUppercase="false"  title="Recipients">
+					<op:subSections>
+						<op:ObjectPageSubSection  >
+							<op:blocks>
+								<VBox>
+									<VBox>
+										<Label text="Assignment By" required="true" design="Bold" />
+                                        <ComboBox width="50%" selectedKey="{WorkFlowStepDetails>/ASSIGNED_BY}"
+						                                >
+													<items>
+														<core:Item  text="None"
+								                            key="2"/>
+														<core:Item  text="User"
+								                            key="1"/>
+													</items>
+												</ComboBox>
+									</VBox>
+									<VBox class="sapUiSmallMarginTop">
+										<Label text="User" design="Bold" required="true"  />
+										<Input value="{WorkFlowStepDetails>/WF_RECEPIENT}" width="50%"    showValueHelp="true" /> 
+										<Label  class="sapUiSmallMarginTop" text="Steps to be completed By"  required="true" />
+										<RadioButtonGroup  >
+			                                <RadioButton selected= "{WorkFlowStepDetails>/ALLR}"  text="One of the recipients" />
+			                                <RadioButton selected= "{WorkFlowStepDetails>/ONER}" text="All of the recipients" />
+		                                </RadioButtonGroup>
+									</VBox>
+								</VBox>
+							</op:blocks>
+						</op:ObjectPageSubSection>
+					</op:subSections>
+				</op:ObjectPageSection>
+				
+				
+			</op:sections>
+		</op:ObjectPageLayout>
+      
+       
+       
+	</Page>
+</mvc:View>

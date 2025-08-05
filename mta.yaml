@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: mta01workflow
+description: Workflow Manage
+version: 0.0.1
+modules:
+- name: mta01workflow-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: mta01workflow-destination-service
+    parameters:
+      content-target: true
+  - name: mta01workflow-repo-host
+    parameters:
+      service-key:
+        name: mta01workflow-repo-host-key
+  - name: mta01workflow-uaa
+    parameters:
+      service-key:
+        name: mta01workflow-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: mta01workflow_html_repo_host
+          ServiceInstanceName: mta01workflow-html5-service
+          ServiceKeyName: mta01workflow-repo-host-key
+          sap.cloud.service: mta01workflow
+        - Authentication: OAuth2UserTokenExchange
+          Name: mta01workflow_uaa
+          ServiceInstanceName: mta01workflow-xsuaa-service
+          ServiceKeyName: mta01workflow-uaa-key
+          sap.cloud.service: mta01workflow
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: mta01workflow-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: mta01workflow-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - mtaworkflow.zip
+      name: mtaworkflow
+      target-path: resources/
+- name: mtaworkflow
+  type: html5
+  path: mtaworkflow
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: mta01workflow-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: mta01workflow-destination-service
+    service-plan: lite
+- name: mta01workflow-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: mta01workflow-xsuaa-service
+    service-plan: application
+- name: mta01workflow-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: mta01workflow-html5-service
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

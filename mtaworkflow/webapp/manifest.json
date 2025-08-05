@@ -1,0 +1,177 @@
+{
+  "_version": "1.53.0",
+  "sap.app": {
+    "id": "mtaworkflow",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.0",
+      "toolsId": "496e1765-9189-4b33-9345-29ce7ad20016"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZPR_S4_CREATE_APPR_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "WorkflowSO-Manage": {
+          "semanticObject": "WorkflowSO",
+          "action": "Manage",
+          "title": "{{WorkflowSO-Manage.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+  
+    "dependencies": {
+      "minUI5Version": "1.114.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "mtaworkflow.i18n.i18n"
+        }
+      },
+      "WorkFlowHeader": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+      "WorkFlowDetails": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+      "WorkFlowStepDetails": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+      "InputModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
+			},
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "rootView": {
+			"viewName": "mtaworkflow.view.App",
+			"type": "XML"
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewPath": "mtaworkflow.view",
+				"controlId": "idApp",
+				"controlAggregation": "pages",
+				"type": "View",
+				"viewType": "XML",
+				"async": true
+			},
+	
+			"routes": [
+				{
+					"name": "Initial",
+					"pattern": "",
+					"target": [
+						"TargetInitialView"
+					]
+				},
+				{
+					"name": "Detail",
+					"pattern": "WorkFlowDetail/{id}/{Type}",
+					"target": [
+						"TargetDetailView"
+					]
+				},
+        {
+					"name": "StepDetail",
+					"pattern": "WorkFlowStepDetail/{id}/{Type}",
+					"target": [
+						"TargetStepDetailView"
+					]
+				}
+				
+			],
+			"targets": {
+				"TargetInitialView": {
+					"viewType": "XML",
+					"viewName": "Initial",
+					"name": "Initial",
+					"level": 0
+				},
+				"TargetDetailView": {
+					"viewType": "XML",
+					"viewName": "Detail",
+					"name": "Detail",
+					"level": 1
+				},
+        "TargetStepDetailView": {
+					"viewType": "XML",
+					"viewName": "StepDetail",
+					"name": "StepDetail",
+					"level": 2
+				}
+			}
+		}
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "mta01workflow"
+  }
+}

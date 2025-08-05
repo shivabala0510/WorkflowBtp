@@ -1,0 +1,7 @@
+{
+  "xsappname": "mta01workflow",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [],
+  "role-templates": []
+}

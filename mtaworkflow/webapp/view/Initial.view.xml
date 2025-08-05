@@ -1,0 +1,76 @@
+<mvc:View controllerName="mtaworkflow.controller.Initial"
+    xmlns:mvc="sap.ui.core.mvc"  displayBlock="true"
+    xmlns="sap.m">
+    <Page  title="Manage WorkFlows">
+        <content >
+		<VBox class="sapUiSmallMargin" >
+      
+       	<Table id="idProductsTable"
+		inset="false" 
+		items="{WorkFlowHeader>/}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="WorkFlows({= ${WorkFlowHeader>/}.length })" level="H2"/>
+					<ToolbarSpacer />
+					<Button text="Create Workflow" type="Emphasized"  press="_createPress" />
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		
+		<columns>
+			<Column
+				width="12em">
+				<Text text="Name" />
+				
+			</Column>
+            <Column
+				width="12em">
+				<Text text="Description" />
+				
+			</Column>
+			 <Column
+				width="12em">
+				<Text text="Valid From" />
+				
+			</Column>
+			 <Column
+				width="12em">
+				<Text text="Valid To" />
+				
+			</Column>
+		
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" type="Navigation" press="_editPress" >
+				<cells>
+					<ObjectIdentifier
+						title="{WorkFlowHeader>WORKFLOW_ID}"
+						text="{WorkFlowHeader>DESCRIPTION}"/>
+					<Text
+						text="{WorkFlowHeader>DESCRIPTION}" />
+					<Text text="{
+                        path: 'WorkFlowHeader>VALID_FROM_DATE',
+                        type: 'sap.ui.model.type.Date',
+                        formatOptions: {
+                          style: 'long',
+                          pattern: 'dd.MM.yyyy'
+                        }
+                      }"  />
+					  <Text text="{
+                        path: 'WorkFlowHeader>VALID_TO_DATE',
+                        type: 'sap.ui.model.type.Date',
+                        formatOptions: {
+                          style: 'long',
+                          pattern: 'dd.MM.yyyy'
+                        }
+                      }"  />
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table> 
+	</VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPR_S4_CREATE_APPR_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="MyPrApprList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BANFN"/>
+                </Key>
+                <Property Name="WAERS" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="EKORG" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Purchasing Org." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BANFN" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchase Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Vendor Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FLIEF" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Fixed Vendor" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BNAME" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PREIS" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Valuation Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ERNAM" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ERDAT" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="MyPrApprItemList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BANFN"/>
+                </Key>
+                <Property Name="BANFN" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchase Req." sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="TXZ01" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Short Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WAERS" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PREIS" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Valuation Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BNFPO" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Requisn. item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MENGE" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MEINS" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit of Measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="ApprovePR" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BANFN"/>
+                </Key>
+                <Property Name="BANFN" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Purchase Req." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WAERS" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="BNFPO" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Requisn. item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TXZ01" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Short Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MENGE" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:label="Quantity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MEINS" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit of Measure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="PREIS" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="3" sap:unicode="false" sap:label="Valuation Price" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PrWorkFlowHead" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="WORKFLOW_ID"/>
+                </Key>
+                <Property Name="WORKFLOW_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="WORKFLOW_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="DESCRIPTION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALID_FROM_DATE" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="VALID_FROM_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALID_TO_DATE" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="VALID_TO_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PrWorkFlowCond" Relationship="ZPR_S4_CREATE_APPR_SRV.PrHeadtoCond" FromRole="FromRole_PrHeadtoCond" ToRole="ToRole_PrHeadtoCond"/>
+                <NavigationProperty Name="PrWorkFlowStep" Relationship="ZPR_S4_CREATE_APPR_SRV.PrHeadToStep" FromRole="FromRole_PrHeadToStep" ToRole="ToRole_PrHeadToStep"/>
+            </EntityType>
+            <EntityType Name="PrWorkFlowCond" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="WORKFLOW_ID"/>
+                </Key>
+                <Property Name="COND_KEY" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="COND_KEY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WORKFLOW_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="WORKFLOW_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="VALUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WORKFLOW_CID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="WORKFLOW_CID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WERKS" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="WERKS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BSTYP" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="BSTYP" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PrWorkFlowHead" Relationship="ZPR_S4_CREATE_APPR_SRV.PrHeadtoCond" FromRole="ToRole_PrHeadtoCond" ToRole="FromRole_PrHeadtoCond"/>
+            </EntityType>
+            <EntityType Name="PrWorkFlowStep" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="WORKFLOW_ID"/>
+                </Key>
+                <Property Name="WORKFLOW_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="WORKFLOW_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ASSIGNED_BY" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ASSIGNED_BY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ONER" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="ONER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WORKFLOW_CID" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="WORKFLOW_CID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ALLR" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="ALLR" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STEP_NO" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="STEP_NO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STEP_NAME" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="STEP_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STEP_TYPE" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="STEP_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WF_RECEPIENT" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="WF_RECEPIENT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PrWorkFlowCond" Relationship="ZPR_S4_CREATE_APPR_SRV.PrHeadToStep" FromRole="ToRole_PrHeadToStep" ToRole="FromRole_PrHeadToStep"/>
+            </EntityType>
+            <Association Name="PrHeadToStep" sap:content-version="1">
+                <End Type="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowHead" Multiplicity="1" Role="FromRole_PrHeadToStep"/>
+                <End Type="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowStep" Multiplicity="*" Role="ToRole_PrHeadToStep"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PrHeadToStep">
+                        <PropertyRef Name="WORKFLOW_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PrHeadToStep">
+                        <PropertyRef Name="WORKFLOW_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PrHeadtoCond" sap:content-version="1">
+                <End Type="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowHead" Multiplicity="1" Role="FromRole_PrHeadtoCond"/>
+                <End Type="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowCond" Multiplicity="*" Role="ToRole_PrHeadtoCond"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PrHeadtoCond">
+                        <PropertyRef Name="WORKFLOW_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PrHeadtoCond">
+                        <PropertyRef Name="WORKFLOW_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPR_S4_CREATE_APPR_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="MyPrApprListSet" EntityType="ZPR_S4_CREATE_APPR_SRV.MyPrApprList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="MyPrApprItemListSet" EntityType="ZPR_S4_CREATE_APPR_SRV.MyPrApprItemList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ApprovePRSet" EntityType="ZPR_S4_CREATE_APPR_SRV.ApprovePR" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PrWorkFlowHeadSet" EntityType="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowHead" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PrWorkFlowCondSet" EntityType="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowCond" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PrWorkFlowStepSet" EntityType="ZPR_S4_CREATE_APPR_SRV.PrWorkFlowStep" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="PrHeadToStep_AssocSet" Association="ZPR_S4_CREATE_APPR_SRV.PrHeadToStep" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PrWorkFlowHeadSet" Role="FromRole_PrHeadToStep"/>
+                    <End EntitySet="PrWorkFlowStepSet" Role="ToRole_PrHeadToStep"/>
+                </AssociationSet>
+                <AssociationSet Name="PrHeadtoCondSet" Association="ZPR_S4_CREATE_APPR_SRV.PrHeadtoCond" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PrWorkFlowHeadSet" Role="FromRole_PrHeadtoCond"/>
+                    <End EntitySet="PrWorkFlowCondSet" Role="ToRole_PrHeadtoCond"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="https://cloud9.way2erp.us:44300/sap/opu/odata/sap/ZPR_S4_CREATE_APPR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://cloud9.way2erp.us:44300/sap/opu/odata/sap/ZPR_S4_CREATE_APPR_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
