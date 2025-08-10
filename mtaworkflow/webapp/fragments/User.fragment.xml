@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		id="myDialog"
+		noDataText="No User Found"
+		title="User"
+		search=".handleSearch"
+		confirm=".handleClose"
+		cancel=".handleClose"
+		items="{
+			path : 'User>/results'
+		}">
+		<ColumnListItem vAlign="Middle">
+			<cells>
+				<ObjectIdentifier title="{User>BNAME}"  />
+                 <Text text = "{User>NAME_TEXT}" />
+				<Text text = "{User>MAIL_ID}" />
+               
+                
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column width="12em">
+				<header>
+					<Text text="User ID" />
+				</header>
+			</Column>
+            <Column minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text text="User Name" />
+				</header>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<header>
+					<Text text="Email" />
+				</header>
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

@@ -63,7 +63,7 @@
 									</VBox>
 									<VBox class="sapUiSmallMarginTop">
 										<Label text="User" design="Bold" required="true"  />
-										<Input value="{WorkFlowStepDetails>/WF_RECEPIENT}" width="50%"    showValueHelp="true" /> 
+										<Input value="{WorkFlowStepDetails>/WF_RECEPIENT}" width="50%"  valueHelpRequest="handleTableSelectDialogPress"  showValueHelp="true"  /> 
 										<Label  class="sapUiSmallMarginTop" text="Steps to be completed By"  required="true" />
 										<RadioButtonGroup  >
 			                                <RadioButton selected= "{WorkFlowStepDetails>/ALLR}"  text="One of the recipients" />
