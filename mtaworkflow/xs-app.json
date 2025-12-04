@@ -5,7 +5,7 @@
     {
       "source": "^/sap/(.*)$",
       "target": "/sap/$1",
-      "destination": "S4_2023",
+      "destination": "S4HANA2023",
       "authenticationType": "xsuaa",
       "csrfProtection": false
     },

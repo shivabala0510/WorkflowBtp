@@ -18,7 +18,7 @@ server:
         backend:
           - path: /sap
             url: http://cloud9.way2erp.us:44300
-            destination: S4_2023
+            destination: S4HANA2023
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
